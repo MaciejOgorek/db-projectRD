@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+import os 
+
+BASE_DIR=Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL='/photos/'
+MEDIA_ROOT=os.path.join(BASE_DIR,"photos")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -83,7 +88,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'CLIENT': {
-            "host":"mongodb+srv://dbadmin:!Bazytozlo@dbprojectrd.j8inrkv.mongodb.net/?retryWrites=true&w=majority",
+            "host":"mongodb+srv://dbadmin:%21Bazytozlo@dbprojectrd.j8inrkv.mongodb.net/?retryWrites=true&w=majority&ssl=true&ssl_cert_reqs=CERT_NONE",
             "name":"dbprojectRD",
             "authMechanism":"SCRAM-SHA-1",
         }
