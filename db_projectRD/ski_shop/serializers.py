@@ -1,15 +1,10 @@
 from rest_framework import serializers
-from ski_shop.models import User, Transaction, Operation, Service, Equipment
+from ski_shop.models import User, Operation, Service, Equipment, Payment
 
 class UserSerialiser(serializers.ModelSerializer):
     class Meta:
         model=User
         fields=('UserID','FirstName','Surname','UserType')
-
-class TransactionSerialiser(serializers.ModelSerializer):
-    class Meta:
-        model=Transaction
-        fields=('TransactionID','ClientID','EmployeeID','Amount','Payment_Method')
 
 class OperationSerialiser(serializers.ModelSerializer):
     class Meta:
@@ -26,3 +21,7 @@ class EquipmentSerialiser(serializers.ModelSerializer):
         model=Equipment
         fields=('EquipmentID', 'EquipmentDESC')
         
+class PaymentSerialiser(serializers.ModelSerializer):
+    class Meta:
+        model=Payment
+        fields=('PaymentID','ClientID','EmployeeID','Amount','PaymentType')

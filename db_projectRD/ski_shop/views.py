@@ -3,8 +3,8 @@ from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
-from ski_shop.models import User, Transaction, Operation, Service, Equipment
-from ski_shop.serializers import UserSerialiser, TransactionSerialiser, OperationSerialiser, ServiceSerialiser, EquipmentSerialiser
+from ski_shop.models import User, Operation, Service, Equipment, Payment
+from ski_shop.serializers import UserSerialiser, OperationSerialiser, ServiceSerialiser, EquipmentSerialiser,PaymentSerialiser
 from django.core.files.storage import default_storage
 # Create your views here.
 
@@ -34,31 +34,6 @@ def UserApi (request, id=0):
         user.delete()
         return JsonResponse("Deleted Successfully", safe=False)
 
-@csrf_exempt
-def TransactionApi (request, id= 0):
-    if request.method=='GET':
-        transaction = Transaction.objects.all()
-        transaction_serialiser = TransactionSerialiser(transaction, many=True)
-        return JsonResponse(transaction_serialiser.data, safe=False)
-    elif request.method=='POST':
-        transaction_data = JSONParser().parse(request)
-        transaction_serialiser = TransactionSerialiser(data = transaction_data)
-        if transaction_serialiser.is_valid():
-            transaction_serialiser.save()
-            return JsonResponse("Added Successfully", safe= False )
-        return JsonResponse("Failed to add", safe=False)
-    elif request.method=='PUT':
-        transaction_data = JSONParser().parse(request)
-        transaction = Transaction.objects.get(TransactionID = transaction_data['TransactionID'])
-        transaction_serialiser = TransactionSerialiser(transaction, data=transaction_data)
-        if transaction_serialiser.is_valid():
-            transaction_serialiser.save()
-            return JsonResponse("Updated Successfully", safe = False)
-        return JsonResponse("Failed to update", safe= False)
-    elif request.method=='DELETE':
-        transaction = Transaction.objects.get(TransactionID = id)
-        transaction.delete()
-        return JsonResponse("Deleted Successfully", safe = False)
     
 @csrf_exempt
 def OperationApi (request, id=0):
@@ -136,6 +111,32 @@ def EquipmentApi (request, id=0):
     elif request.method=='DELETE':
         equipment=Equipment.objects.get(EquipmentID = id)
         equipment.delete()
+        return JsonResponse("Deleted Successfully", safe=False)
+    
+@csrf_exempt    
+def PaymentApi (request, id=0):
+    if request.method=='GET':
+        payment = Payment.objects.all()
+        payment_serialiser = PaymentSerialiser(payment, many=True)
+        return JsonResponse(payment_serialiser.data, safe=False)
+    elif request.method=='POST':
+        payment_data = JSONParser().parse(request)
+        payment_serialiser = PaymentSerialiser(data=payment_data)
+        if payment_serialiser.is_valid():
+            payment_serialiser.save()
+            return JsonResponse("Added Successfully",safe=False)
+        return JsonResponse("Failed to Add", safe=False)
+    elif request.method=='PUT':
+        payment_data = JSONParser().parse(request)
+        payment = Payment.objects.get(PaymentID = payment_data['PaymentID'])
+        payment_serialiser = PaymentSerialiser(payment, data=payment_data)
+        if payment_serialiser.is_valid():
+            payment_serialiser.save()
+            return JsonResponse ("Updated Successfully", safe=False)
+        return JsonResponse("Failed to Update", safe = False)
+    elif request.method=='DELETE':
+        payment=Payment.objects.get(PaymentID = id)
+        payment.delete()
         return JsonResponse("Deleted Successfully", safe=False)
 
 

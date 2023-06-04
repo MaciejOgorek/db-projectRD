@@ -9,9 +9,6 @@ urlpatterns = [
     re_path(r'^user$', views.UserApi),
     re_path(r'^user/([0-9]+)$', views.UserApi),
 
-    re_path(r'^transaction$', views.TransactionApi),
-    re_path(r'^transaction/([0-9]+)$', views.TransactionApi),
-
     re_path(r'^operation$', views.OperationApi),
     re_path(r'^operation/([0-9]+)$', views.OperationApi),
 
@@ -21,5 +18,9 @@ urlpatterns = [
     re_path(r'^equipment$', views.EquipmentApi),
     re_path(r'^equipment/([0-9]+)$', views.EquipmentApi),
 
-    re_path(r'^/equipment/SaveFile',views.SaveFile)
-]+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+    re_path(r'^payment$', views.PaymentApi),
+    re_path(r'^payment/([0-9]+)$', views.PaymentApi),
+
+
+    
+]

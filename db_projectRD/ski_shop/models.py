@@ -7,13 +7,6 @@ class User(models.Model):
     Surname = models.CharField(max_length=500)
     UserType = models.CharField(max_length=500)
 
-class Transaction(models.Model):
-    TransactionID = models.AutoField(primary_key=True)
-    ClientID = models.CharField(max_length=12)
-    EmployeeID = models.CharField(max_length=12)
-    Amount = models.CharField(max_length=12)
-    Payment_Method = models.CharField(max_length=500)
-
 class Operation(models.Model):
     OperationID = models.AutoField(primary_key=True)
     EmployeeID = models.CharField(max_length=512)
@@ -32,7 +25,11 @@ class Service(models.Model):
 
 class Equipment (models.Model):
     EquipmentID = models.AutoField(primary_key=True)
-    EquipmentDESC = models.JSONField
+    EquipmentDESC = models.JSONField(default={""})
 
-
-
+class Payment(models.Model):
+    PaymentID = models.AutoField(primary_key=True)
+    ClientID = models.CharField(max_length=12)
+    EmployeeID = models.CharField(max_length=12)
+    Amount = models.CharField(max_length=12)
+    PaymentType = models.CharField(max_length=500)
