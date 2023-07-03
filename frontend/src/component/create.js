@@ -4,7 +4,6 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
 export default function Createuser() {
-    let navigate = useNavigate();
     const[UserID,setuserID] = useState('');
     const [FirstName, setFirstName] = useState('');
     const [Surname, setSurname] = useState('');
@@ -16,8 +15,6 @@ export default function Createuser() {
             FirstName,
             Surname,
             UserType
-        }).then(() => {
-            navigate.push('/read')
         })
     }
     return (
