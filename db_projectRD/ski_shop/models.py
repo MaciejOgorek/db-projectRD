@@ -25,6 +25,7 @@ class Service(models.Model):
 
 class Equipment (models.Model):
     EquipmentID = models.AutoField(primary_key=True)
+    EquipmentType = models.CharField(max_length=512)
     EquipmentDESC = models.JSONField(default={""})
 
 class Payment(models.Model):

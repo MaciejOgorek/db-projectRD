@@ -1,0 +1,68 @@
+.menu-container {
+    background-color:transparent;
+    padding: 2rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .menu-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 2rem;
+    background-color: transparent;
+    position: absolute;
+  }
+  
+  .menu-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+    margin-right: 2rem;
+  }
+  
+  .menu-items {
+  display: flex;
+  flex-direction: line;
+  gap: 2rem;
+  text-align: center;
+  }
+  
+  .menu-link {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: #000;
+  }
+  
+  .menu-link:hover {
+    color: #c7c7c7;
+  }
+  .button-container {
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    margin-top: 150px;
+    justify-content: center;
+    position:absolute
+
+  }
+  
+  .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 300px;
+    position: absolute;
+    flex-direction: column;
+    padding-top: 300px;
+  }
+  
+  .form {
+    /* Add desired form styles */
+    /* For example: */
+    width: 300px;
+  }

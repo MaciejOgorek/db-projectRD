@@ -19,7 +19,7 @@ class ServiceSerialiser(serializers.ModelSerializer):
 class EquipmentSerialiser(serializers.ModelSerializer):
     class Meta:
         model=Equipment
-        fields=('EquipmentID', 'EquipmentDESC')
+        fields=('EquipmentID', 'EquipmentDESC', 'EquipmentType')
         
 class PaymentSerialiser(serializers.ModelSerializer):
     class Meta:
