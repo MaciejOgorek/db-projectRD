@@ -23,7 +23,7 @@ export default function Createpayment() {
             <Form className="create-form">
                 <Form.Field>
                     <label>PaymentID</label>
-                    <input placeholder='PaymentID' onChange={(e)=>setpaymentID(e.target.value)}/>
+                    <input placeholder='PaymentID' onChange={(e)=>setpaymentID(e.target.value)} disabled/>
                 </Form.Field>
                 <Form.Field>
                     <label>ClientID</label>
@@ -39,7 +39,13 @@ export default function Createpayment() {
                 </Form.Field>
                 <Form.Field>
                     <label>PaymentType</label>
-                    <input placeholder='PaymentType' onChange={(e)=>setpaymenttype(e.target.value)}/>
+                    <select
+                     placeholder='PaymentType' 
+                     onChange={(e)=>setpaymenttype(e.target.value)}
+                     >
+                    <option value="Cash">Cash</option>
+                    <option value="Card">Card</option>
+                    </select>
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>

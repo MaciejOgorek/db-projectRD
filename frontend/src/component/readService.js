@@ -75,7 +75,7 @@ export default function ReadService() {
                                 <Table.Cell>{data.EmployeeID}</Table.Cell>
                                 <Table.Cell>{data.TransactionID}</Table.Cell>
                                 <Table.Cell>{data.ServiceType}</Table.Cell>
-                                <button onClick={() => onDelete(data.UserID)}>Delete</button>
+                                <button onClick={() => onDelete(data.ServiceID)}>Delete</button>
                                 <button onClick={() => onEdit(data)}>Edit</button>
                             </Table.Row>
                         )

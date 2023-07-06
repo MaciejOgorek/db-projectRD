@@ -21,7 +21,7 @@ export default function Createuser() {
             <Form className="create-form">
                 <Form.Field>
                     <label>UserID</label>
-                    <input placeholder='UserID' onChange={(e)=>setuserID(e.target.value)}/>
+                    <input placeholder='UserID' onChange={(e)=>setuserID(e.target.value)} disabled/>
                 </Form.Field>
                 <Form.Field>
                     <label>First Name</label>
@@ -33,7 +33,14 @@ export default function Createuser() {
                 </Form.Field>
                 <Form.Field>
                     <label>Usertype</label>
-                    <input placeholder='UserType' onChange={(e)=>setUserType(e.target.value)}/>
+                    <select
+                        input placeholder='UserType' 
+                        onChange={(e)=>setUserType(e.target.value)}
+                    >
+                        <option value="Admin">Admin</option>
+                        <option value="Employee">Employee</option>
+                        <option value="Client">Client</option>
+                    </select>
                 </Form.Field>
                 <Button onClick={postData} type='submit'>Submit</Button>
             </Form>

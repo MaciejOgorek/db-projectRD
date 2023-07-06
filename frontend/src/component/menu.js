@@ -7,6 +7,10 @@ import CreateService from './createService';
 import Createpayment from './createPayment';
 import Createequipment from './createEquipment';
 import ReadService from './readService';
+import ReadPayment from './readPayment';
+import ReadEquipment from './readEquipment';
+import ReadOperation from './readOperation';
+import Createoperation from './createOperation';
 
 const Menu = () => {
   const [showButtons, setShowButtons] = useState(false);
@@ -153,6 +157,10 @@ const Menu = () => {
       {showpaymentaddForm &&<Createpayment />}
       {showequipmentaddForm && <Createequipment />}
       {showservicereadForm &&<ReadService/>}
+      {showpaymentreadForm && <ReadPayment />}
+      {showequipmentreadForm && <ReadEquipment />}
+      {showoperationreadForm && <ReadOperation/>}
+      {showoperationaddForm && <Createoperation />}
       </div>
       
     </div>

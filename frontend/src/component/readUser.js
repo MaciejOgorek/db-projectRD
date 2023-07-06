@@ -62,6 +62,7 @@ export default function ReadUser() {
                         <Table.HeaderCell>First Name</Table.HeaderCell>
                         <Table.HeaderCell>Last Name</Table.HeaderCell>
                         <Table.HeaderCell>UserType</Table.HeaderCell>
+                        <Table.HeaderCell>Action</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -110,12 +111,16 @@ export default function ReadUser() {
           </Form.Field>
           <Form.Field>
             <label>UserType</label>
-            <input
+            <select
               type="text"
               name="UserType"
               value={selectedItem.UserType}
               onChange={handleInputChange}
-            />
+            >
+              <option value="Admin">Admin</option>
+              <option value="Employee">Employee</option>
+              <option value="Client">Client</option>
+            </select>
           </Form.Field>
           <Button onClick={handleUpdate} primary>
             Update
