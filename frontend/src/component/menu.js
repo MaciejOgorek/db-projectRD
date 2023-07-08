@@ -11,6 +11,7 @@ import ReadPayment from './readPayment';
 import ReadEquipment from './readEquipment';
 import ReadOperation from './readOperation';
 import Createoperation from './createOperation';
+import {  Button } from 'semantic-ui-react';
 
 const Menu = () => {
   const [showButtons, setShowButtons] = useState(false);
@@ -126,28 +127,28 @@ const Menu = () => {
     <div className="menu-container">
       <div className="menu-bar">
         <div className="menu-items">
-          <button className="menu-button" onClick={handleuserButtonClick}>
+          <Button className="menu-button" onClick={handleuserButtonClick}>
             <Link to="/user" className="menu-link">Użytkownicy</Link>
-          </button>
-          <button className="menu-button" onClick={handleserviceButtonClick}>
+          </Button>
+          <Button className="menu-button" onClick={handleserviceButtonClick}>
             <Link to="/service" className="menu-link">Usługi</Link>
-          </button>
-          <button className="menu-button" onClick={handleequipmentButtonClick}>
+          </Button>
+          <Button className="menu-button" onClick={handleequipmentButtonClick}>
             <Link to="/equipment" className="menu-link">Sprzęt</Link>
-          </button>
-          <button className="menu-button" onClick={handleoperationButtonClick}>
+          </Button>
+          <Button className="menu-button" onClick={handleoperationButtonClick}>
             <Link to="/operation" className="menu-link">Wynajem</Link>
-          </button>
-          <button className="menu-button" onClick={handlepaymentButtonClick}>
+          </Button>
+          <Button className="menu-button" onClick={handlepaymentButtonClick}>
             <Link to="/payment" className="menu-link">Płatności</Link>
-          </button>
+          </Button>
         </div>
       </div>
 
       {showButtons && (
         <div className="button-container">
-          <button className="sub-button" onClick={handleaddButtonClick}>Add</button>
-          <button className="sub-button" onClick={handlesearchButtonClick}>Search</button>
+          <Button className="sub-button" onClick={handleaddButtonClick}>Add</Button>
+          <Button className="sub-button" onClick={handlesearchButtonClick}>Search</Button>
         </div>
       )}
       <div className="form-container">  

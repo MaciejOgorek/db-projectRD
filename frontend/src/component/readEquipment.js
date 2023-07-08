@@ -3,82 +3,83 @@ import React, { useEffect, useState } from 'react';
 import { Table, Button, Form } from 'semantic-ui-react';
 
 export default function ReadEquipment() {
-    const [APIData, setAPIData] = useState([]);
-    const [selectedItem, setSelectedItem] = useState(null);
-    useEffect(() => {
-        axios.get(`http://127.0.0.1:8000/equipment`)
-            .then((response) => {
-                console.log(response.data)
-                setAPIData(response.data);
-            })
-    }, []);
+  const [APIData, setAPIData] = useState([]);
+  const [selectedItem, setSelectedItem] = useState(null);
 
-    const getData = () => {
-        axios.get(`http://127.0.0.1:8000/equipment`)
-            .then((getData) => {
-                setAPIData(getData.data);
-            })
-    }
+  useEffect(() => {
+    axios.get('http://127.0.0.1:8000/equipment')
+      .then((response) => {
+        console.log(response.data);
+        setAPIData(response.data);
+      });
+  }, []);
 
-    const onDelete = (id) => {
-        axios.delete(`http://127.0.0.1:8000/equipment/${id}`)
-        .then(() => {
-            getData();
-        })
-    }
-    const onEdit = (data) => {
-        setSelectedItem(data);
-      };
-    
-      const handleInputChange = (event) => {
-        const { name, value } = event.target;
-        setSelectedItem((prevItem) => ({
-          ...prevItem,
-          [name]: value,
-        }));
-      };
-    
-      const handleUpdate = () => {
-        axios
-          .put(`http://127.0.0.1:8000/equipment/${selectedItem.EquipmentID}`, selectedItem)
-          .then((response) => {
-            console.log('Item updated successfully:', response.data);
-            // Perform any necessary actions after successful update
-            setSelectedItem(null); // Clear the selectedItem state
-            getData();
-          })
-          .catch((error) => {
-            console.error('Error updating item:', error);
-            // Handle any errors that occurred during the update
-          });
-      };
+  const getData = () => {
+    axios.get('http://127.0.0.1:8000/equipment')
+      .then((getData) => {
+        setAPIData(getData.data);
+      });
+  };
 
-    return (
-        <div>
-            <Table singleLine>
-                <Table.Header>
-                    <Table.Row>
-                        <Table.HeaderCell>EquipmentID</Table.HeaderCell>
-                        <Table.HeaderCell>EquipmentType</Table.HeaderCell>
-                        <Table.HeaderCell>EquipmentDESC</Table.HeaderCell>
-                    </Table.Row>
-                </Table.Header>
+  const onDelete = (id) => {
+    axios.delete(`http://127.0.0.1:8000/equipment/${id}`)
+      .then(() => {
+        getData();
+      });
+  };
 
-                <Table.Body>
-                    {APIData.map((data) => {
-                        return (
-                            <Table.Row>
-                                <Table.Cell>{data.EquipmentID}</Table.Cell>
-                                <Table.Cell>{data.EquipmentType}</Table.Cell>
-                                <Table.Cell>{JSON.stringify(data.EquipmentDESC)}</Table.Cell>
-                                <button onClick={() => onDelete(data.EquipmentID)}>Delete</button>
-                                <button onClick={() => onEdit(data)}>Edit</button>
-                            </Table.Row>
-                        )
-                    })}
-                </Table.Body>
-            </Table>
-            {selectedItem && (
+  const onEdit = (data) => {
+    setSelectedItem(data);
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setSelectedItem((prevItem) => ({
+      ...prevItem,
+      [name]: value,
+    }));
+  };
+
+  const handleUpdate = () => {
+    axios.put(`http://127.0.0.1:8000/equipment/${selectedItem.EquipmentID}`, selectedItem)
+      .then((response) => {
+        console.log('Item updated successfully:', response.data);
+        setSelectedItem(null);
+        getData();
+      })
+      .catch((error) => {
+        console.error('Error updating item:', error);
+      });
+  };
+
+  return (
+    <div>
+      <Table singleLine>
+        <Table.Header>
+          <Table.Row>
+            <Table.HeaderCell>EquipmentID</Table.HeaderCell>
+            <Table.HeaderCell>EquipmentType</Table.HeaderCell>
+            <Table.HeaderCell>EquipmentDESC</Table.HeaderCell>
+            <Table.HeaderCell>Available actions</Table.HeaderCell>
+          </Table.Row>
+        </Table.Header>
+
+        <Table.Body>
+          {APIData.map((data) => (
+            <Table.Row key={data.EquipmentID}>
+              <Table.Cell>{data.EquipmentID}</Table.Cell>
+              <Table.Cell>{data.EquipmentType}</Table.Cell>
+              <Table.Cell>{JSON.stringify(data.EquipmentDESC)}</Table.Cell>
+              <Table.Cell>
+                <Button onClick={() => onDelete(data.EquipmentID)}>Delete</Button>
+                <Button onClick={() => onEdit(data)}>Edit</Button>
+              </Table.Cell>
+            </Table.Row>
+          ))}
+        </Table.Body>
+      </Table>
+
+      {selectedItem && (
         <Form>
           <Form.Field>
             <label>EquipmentID</label>
@@ -102,7 +103,7 @@ export default function ReadEquipment() {
             <input
               type="text"
               name="EquipmentDESC"
-              value={selectedItem.EquipmentDESC}
+              value={JSON.stringify(selectedItem.EquipmentDESC)}
               onChange={handleInputChange}
             />
           </Form.Field>
@@ -111,8 +112,6 @@ export default function ReadEquipment() {
           </Button>
         </Form>
       )}
-            
-        </div>
-    )
-    
+    </div>
+  );
 }

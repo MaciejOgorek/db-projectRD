@@ -11,7 +11,7 @@ export default function CreateEquipment() {
     const newEquipment = {
       EquipmentID: EquipmentID,
       EquipmentType: EquipmentType,
-      EquipmentDESC: EquipmentDESC,
+      EquipmentDESC: JSON.parse(EquipmentDESC),
     };
 
     axios.post('http://127.0.0.1:8000/equipment', newEquipment)
@@ -34,7 +34,8 @@ export default function CreateEquipment() {
           <input
             placeholder="EquipmentID"
             value={EquipmentID}
-            onChange={(e) => setEquipmentID(e.target.value)}
+            onChange={(e) => setEquipmentID(e.target.value) }
+            disabled
           />
         </Form.Field>
         <Form.Field>
@@ -47,14 +48,14 @@ export default function CreateEquipment() {
         </Form.Field>
         <Form.Field>
           <label>EquipmentDESC</label>
-          <input
+          <textarea
             placeholder="EquipmentDESC"
             value={EquipmentDESC}
             onChange={(e) => setEquipmentDESC(e.target.value)}
           />
         </Form.Field>
         <Button onClick={handleCreate} primary>
-          Create Equipment
+          Submit
         </Button>
       </Form>
     </div>

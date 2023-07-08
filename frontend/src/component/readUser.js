@@ -62,7 +62,7 @@ export default function ReadUser() {
                         <Table.HeaderCell>First Name</Table.HeaderCell>
                         <Table.HeaderCell>Last Name</Table.HeaderCell>
                         <Table.HeaderCell>UserType</Table.HeaderCell>
-                        <Table.HeaderCell>Action</Table.HeaderCell>
+                        <Table.HeaderCell>Available actions</Table.HeaderCell>
                     </Table.Row>
                 </Table.Header>
 
@@ -74,8 +74,8 @@ export default function ReadUser() {
                                 <Table.Cell>{data.FirstName}</Table.Cell>
                                 <Table.Cell>{data.Surname}</Table.Cell>
                                 <Table.Cell>{data.UserType}</Table.Cell>
-                                <button onClick={() => onDelete(data.UserID)}>Delete</button>
-                                <button onClick={() => onEdit(data)}>Edit</button>
+                                <Button onClick={() => onDelete(data.UserID)}>Delete</Button>
+                                <Button onClick={() => onEdit(data)}>Edit</Button>
                             </Table.Row>
                         )
                     })}
